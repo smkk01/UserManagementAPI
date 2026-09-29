@@ -11,25 +11,9 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// 1. Error handling first
-app.UseErrorHandling();
-
-// 2. Authentication next
-app.UseTokenAuthentication();
-
-// 3. Logging last
+// Middleware order matters: the first middleware wraps everything registered after it.
 app.UseRequestResponseLogging();
-
-
-// Global exception handler
-app.UseExceptionHandler(errorApp =>
-{
-    errorApp.Run(async context =>
-    {
-        context.Response.StatusCode = 500;
-        await context.Response.WriteAsync("An unexpected error occurred.");
-    });
-});
+app.UseErrorHandling();
 
 // Enable Swagger
 app.UseSwagger();
@@ -37,6 +21,9 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "User Management API v1");
 });
+
+// Protect the API endpoints while keeping Swagger available for testing.
+app.UseTokenAuthentication();
 
 // In-memory user list
 var users = new List<User>();

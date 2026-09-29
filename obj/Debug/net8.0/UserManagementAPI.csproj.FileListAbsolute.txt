@@ -31,3 +31,4 @@ C:\UserManagementAPI\obj\Debug\net8.0\refint\UserManagementAPI.dll
 C:\UserManagementAPI\obj\Debug\net8.0\UserManagementAPI.pdb
 C:\UserManagementAPI\obj\Debug\net8.0\UserManagementAPI.genruntimeconfig.cache
 C:\UserManagementAPI\obj\Debug\net8.0\ref\UserManagementAPI.dll
+C:\UserManagementAPI\obj\Debug\net8.0\UserManagementAPI.sourcelink.json
